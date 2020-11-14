@@ -3,18 +3,21 @@ package com.rockpaperscissors;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Let's play Rock, Paper, Scissors!");
+        TimeUnit.SECONDS.sleep(1);
         int playerScore = 0;
         int computerScore = 0;
         int winScore = 0;
 
         winScore = getWinScore(input, winScore);
+        TimeUnit.SECONDS.sleep(1);
 
         while (true) {
             if (playerScore == winScore || computerScore == winScore) {
@@ -38,6 +41,7 @@ public class Main {
                     break;
                 } else {
                     System.out.println("Invalid input");
+                    continue;
                 }
             }
             System.out.println();
@@ -47,6 +51,7 @@ public class Main {
             System.out.print("Enter your choice: ");
             String playerChoice = input.nextLine();
             playerChoice = playerChoice.toLowerCase().trim();
+            TimeUnit.SECONDS.sleep(1);
             if (playerChoice.equals(computerChoice)) {
                 System.out.println("The computer chose " + computerChoice + ", it's a draw!");
             } else if (playerChoice.equals("rock")) {
@@ -91,7 +96,7 @@ public class Main {
                     winScore = playScore;
                     validScore = true;
                 } else {
-                    System.out.println("Invalid core");
+                    System.out.println("Invalid Score");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid Score");
